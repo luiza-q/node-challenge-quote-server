@@ -18,6 +18,25 @@ app.get("/", function (request, response) {
 });
 
 //START OF YOUR CODE...
+const returnQuotes = (req, res) => {
+  res.send(quotes)
+}
+
+const returnRandomQuote = (req, res) => {
+    res.send(pickFromArray(quotes));
+}
+
+const searchFunction = (req, res) => {
+  const searchTerm = req.query.term;
+  const match = quotes.filter(q => q.quote.includes(searchTerm));
+  res.send(match);
+}
+
+
+app.get('/quotes', returnQuotes);
+app.get('/quotes/random', returnRandomQuote);
+app.get('/quotes/search', searchFunction);
+
 
 //...END OF YOUR CODE
 
